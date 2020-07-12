@@ -26,11 +26,7 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
-const corsOptions = {
-	origin: '*',
-    optionsSuccessStatus: 200,
-}
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('dist'))
@@ -47,6 +43,7 @@ const textapi = new aylien({
 
 const textPostHandle = (req,res) => {
 	const text = req.body;
+	console.log("Request to '/textAPI", text);
 	textapi.sentiment({
 		'text': text,
 		'mode': 'tweet'

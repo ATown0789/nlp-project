@@ -2,14 +2,13 @@ function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let textForAnalysis = document.getElementById('textForAnalysis').value
-    Client.checkForName(textForAnalysis)
+    const textForAnalysis = document.getElementById('textForAnalysis').value;
 
     console.log("::: Form Submitted :::")
     
 	/* Function to POST data */
 	const postData = async (url, data = {}) => {
-		console.log(data);
+		console.log(url);
 		const res = await fetch(url,{
 			method: 'POST',
 			credentials: 'same-origin',
@@ -17,14 +16,11 @@ function handleSubmit(event) {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
-		});
-		try {
-			const newData = await res.json();
-			return newData;
-		}
-		catch(error){
-			console.log('error', error);
-		}
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log(data);
+			})
 	}
 	
 	postData('/textAPI', textForAnalysis);
