@@ -11,25 +11,34 @@
 					<h1>Evaluate News Using NLP!</h1>
 				</header>
 				<h3>What would you like to evaluate?</h3>
-                <form class="" onsubmit="return Client.submitText(event)">
-                    <label for="textForAnalysis">Enter a sentence or two:</label>
+                <form class="" onsubmit="return Client.checkSubmit(event)">
+                    <label for="textForAnalysis">Enter statement to analyze:</label>
 					<input 
 						id="textForAnalysis"
 						type="text"
 						name="input"
-						value="" 
-						
+						value=""
 						placeholder="Johnny is very good at football!"
+					/>
+					<br/>
+					<p style = "font-size: 20px">OR:</p>
+					<br/>
+					<label for="URLForAnalysis">Enter URL to analyze:</label>
+					<input 
+						id="URLForAnalysis"
+						type="text"
+						name="input"
+						value=""
+						placeholder="https://www.giovannafletcher.com/blog/posts/its-getting-hot-hot-hot"
 					/>
                     <input 
 						type="submit"
 						value="Submit"
-						onclick="return Client.handleSubmit(event)" 
-						onsubmit="return Client.handleSubmit(event)"
+						onclick="return Client.checkSubmit(event)" 
+						onsubmit="return Client.checkSubmit(event)"
 					/>
                 </form>
-            <section>
-
+            </section>
             <section>
                 <strong>Form Results:</strong>
                 <div id="results"></div>

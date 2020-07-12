@@ -1,5 +1,5 @@
 //Port for server
-const PORT = 8080;
+const PORT = 8081;
 
 //Express to run server and routes
 const express = require('express')
@@ -22,7 +22,8 @@ const bodyParser = require('body-parser')
 
 //Configure express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+//Configure body-parser to expect plain text instead of json
+app.use(bodyParser.text({type: '*/*'}));
 
 // Cors for cross origin allowance
 const cors = require('cors');
@@ -42,25 +43,48 @@ const textapi = new aylien({
 */
 
 const textPostHandle = (req,res) => {
+	console.log(req);
 	const text = req.body;
 	console.log("Request to '/textAPI", text);
 	textapi.sentiment({
-		'text': text,
-		'mode': 'tweet'
+		'text': text
 		}, 
-		(error, response) => {
+		function(error, response, remaining) {
 			if (error === null) {
-			console.log(response);
-			res.send(response)
+				console.log('Aylien response', response, remaining);
+				res.send(response)
 			}
+			else 
+				console.log(error);
 		}
 	);
 }
+
+const URLPostHandle = (req,res) => {
+	console.log(req);
+	const text = req.body;
+	console.log("Request to '/urlAPI", text);
+	textapi.sentiment({
+		'url': text
+		}, 
+		function(error, response, remaining) {
+			if (error === null) {
+				console.log('Aylien response', response, remaining);
+				res.send(response)
+			}
+			else 
+				console.log(error);
+		}
+	);
+}
+
+
 
 /*End Handle Functions*/
 
 
 app.post('/textAPI', textPostHandle);
+app.post('/urlAPI', URLPostHandle);
 
 
 // Callback to ensure server is listening

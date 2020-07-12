@@ -1,30 +1,25 @@
-function handleSubmit(event) {
-    event.preventDefault()
-
-    // check what text was put into the form field
-    const textForAnalysis = document.getElementById('textForAnalysis').value;
+function URLSubmit (urlForAnalysis) {
 
     console.log("::: Form Submitted :::")
     
 	/* Function to POST data */
 	const postData = async (url, data = {}) => {
-		console.log(url);
 		const res = await fetch(url,{
 			method: 'POST',
 			credentials: 'same-origin',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(data)
+			body: data
 		})
 			.then(res => res.json())
 			.then(data => {
 				console.log(data);
-			})
+			});
 	}
 	
-	postData('/textAPI', textForAnalysis);
+	postData('http://localhost:8081/urlAPI', urlForAnalysis);
 	
 }
 
-export { handleSubmit }
+export { URLSubmit }
