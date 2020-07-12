@@ -42,8 +42,8 @@ const textapi = new aylien({
 *Handle Functions
 */
 
+//Short text analysis
 const textPostHandle = (req,res) => {
-	console.log(req);
 	const text = req.body;
 	console.log("Request to '/textAPI", text);
 	textapi.sentiment({
@@ -60,8 +60,8 @@ const textPostHandle = (req,res) => {
 	);
 }
 
+//Url of blog to analyze
 const URLPostHandle = (req,res) => {
-	console.log(req);
 	const text = req.body;
 	console.log("Request to '/urlAPI", text);
 	textapi.sentiment({

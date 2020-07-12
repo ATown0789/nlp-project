@@ -19,6 +19,7 @@ function checkSubmit(event) {
 		else
 			alert('Please Enter A Valid URL');
 	}
+	//Validate that only one field is being entered
 	else if(statement !== '' && url !== '')
 		alert('Please only enter text in one field')
 	else if(statement === ''  && url === '')
