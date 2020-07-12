@@ -14,7 +14,7 @@ function URLSubmit (urlForAnalysis) {
 		})
 			.then(res => res.json())
 			.then(data => {
-				document.getElementById('p1').innerHTML = `Sentiment: ${data.polarity}`;
+				document.getElementById('p1').innerHTML = `Tone: ${data.polarity}`;
 				document.getElementById('p2').innerHTML = `Confidence: ${data.polarity_confidence.toFixed(2) * 100}%`;
 				document.getElementById('p3').innerHTML = `Subjectivity: ${data.subjectivity}`;
 				document.getElementById('p4').innerHTML = `Confidence: ${data.subjectivity_confidence.toFixed(2) * 100}%`;

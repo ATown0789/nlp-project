@@ -1,17 +1,21 @@
 function checkSubmit(event) {
 	event.preventDefault()
 	
+	const urlTestReg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm;
+	
 	//Get values from input fields
 	const statement = document.getElementById('textForAnalysis').value;
 	const url = document.getElementById('URLForAnalysis').value;
 	
 	//Validate that there is text in statement but not in url
 	if(statement !== '' && url === ''){
-		Client.statementSubmit(statement);
+		if(urlTestReg.test(statement))
+			alert('Please enter URLs in the URL section');
+		else
+			Client.statementSubmit(statement);
 	}
 	//Validate that there is text url but not in statement
 	else if(statement === '' && url !== ''){
-		const urlTestReg = RegExp('^(http|https):\/\/+[\www\d]+\.[\w]+(\/[\w\d]+)?');
 		//Check that the URL is valid
 		if(urlTestReg.test(url)){
 			Client.URLSubmit(url);
