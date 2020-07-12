@@ -60,7 +60,7 @@ const textPostHandle = (req,res) => {
 	);
 }
 
-//Url of blog to analyze
+//Url of article to analyze
 const URLPostHandle = (req,res) => {
 	const text = req.body;
 	console.log("Request to '/urlAPI", text);
@@ -78,9 +78,8 @@ const URLPostHandle = (req,res) => {
 	);
 }
 
-
-
-/*End Handle Functions*/
+/***
+*End Handle Functions*/
 
 
 app.post('/textAPI', textPostHandle);

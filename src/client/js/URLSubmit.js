@@ -2,7 +2,7 @@ function URLSubmit (urlForAnalysis) {
 	const resultEl = document.getElementById('results');
     console.log("::: Form Submitted :::")
     
-	/* Function to POST data */
+	/* Function to fetch POST, await response, and update UI */
 	const postData = async (url, data = {}) => {
 		const res = await fetch(url,{
 			method: 'POST',
